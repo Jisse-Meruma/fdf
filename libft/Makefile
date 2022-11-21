@@ -72,16 +72,16 @@ bonus: $(OBJ) $(BON_OBJ)
 	@ar -rc $(NAME) $^
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@ 
+	@$(CC) $(CFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJ)
 	@ar -rc $(NAME) $^
 
 clean:
-	$(RM) $(OBJ) $(BON_OBJ)
+	@$(RM) $(OBJ) $(BON_OBJ)
 
 fclean: 
-	$(RM) $(NAME) $(OBJ) $(BON_OBJ)
+	@$(RM) $(NAME) $(OBJ) $(BON_OBJ)
 
 re: fclean all
 
