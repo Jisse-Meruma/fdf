@@ -10,12 +10,14 @@ SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
 CC		:=	gcc
-CFLAGS	:=	-Wall -Wextra -Werror
+CFLAGS	:=	-Wall -Wextra -Werror \
+## -fsanitize=address
 COMPILE	:=	$(CC) $(CFLAGS)
 RM		:=	rm -rf
 
 SRC 	:=	main.c \
-			map.c
+			map.c \
+			list_manipulation.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
@@ -41,7 +43,7 @@ all:  $(NAME)
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)
 	@echo -----------------------
-	@$(MAKE) -C libft bonus
+	@$(MAKE) -C libft
 	@$(COMPILE) -o $(NAME) $^ $(LIBS) 
 	@echo $(Green) Complete ✅ $(Color_Off)
 	@echo -----------------------

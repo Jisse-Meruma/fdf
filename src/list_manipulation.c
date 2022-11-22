@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list_manipulation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 11:25:35 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/22 16:18:19 by jmeruma          ###   ########.fr       */
+/*   Created: 2022/11/22 11:55:24 by jmeruma           #+#    #+#             */
+/*   Updated: 2022/11/22 16:16:50 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <stdlib.h>
 #include <fdf.h>
 
-int	main(int argc, char *argv[])
+static t_point	*ft_lstlast(t_point *lst)
 {
-	int		fd;
-	t_point	**list;
+	if (lst == NULL)
+		return (NULL);
+	if (lst->next == NULL)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
 
-	if (argc != 2)
-		return (perror("argc"), 1);
-	fd = map_validity(argv);
-	if (fd == -1)
-		return (perror("map invalid"), 1);
-	list = map_creation(fd);
+void	ft_point_addback(t_point **lst, t_point *new)
+{
+	t_point	*node;
+
+	node = *lst;
+	if (lst == NULL || new == NULL)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	node = ft_lstlast(*lst);
+	node->next = new;
 }

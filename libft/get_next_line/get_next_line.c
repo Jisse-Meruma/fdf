@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 20:52:21 by jisse             #+#    #+#             */
-/*   Updated: 2022/11/09 13:58:17 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/22 12:18:05 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * also make sure to free() the old line
  * other wise you'll have leaks :(
  */
-char	*line_dup(char	*line, int *size_line)
+static char	*line_dup(char	*line, int *size_line)
 {
 	int		i;
 	int		size_old;
@@ -44,7 +44,7 @@ char	*line_dup(char	*line, int *size_line)
  * This is the function that tells me if im at the end of a line.
  * if so i'll send a signal that i detect in my while loop to break the loop
  */
-int	char_checker(char *buffer)
+static int	char_checker(char *buffer)
 {
 	int	i;
 
@@ -68,7 +68,7 @@ int	char_checker(char *buffer)
  * Then i check if i have to increase the size of the actual line 
  * if so i double the sizeof(line) that it was before :D.
  */
-char	*line_assembly(char *buffer, int fd, char *line, int size_line)
+static char	*line_assembly(char *buffer, int fd, char *line, int size_line)
 {
 	int		counter;
 	int		read_count;
