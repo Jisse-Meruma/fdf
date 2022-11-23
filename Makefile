@@ -10,7 +10,7 @@ SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
 CC		:=	gcc
-CFLAGS	:=	-Wall -Wextra -Werror \
+CFLAGS	:=	-Wall -Wextra -Werror -g -fsanitize=address\
 ## -fsanitize=address
 COMPILE	:=	$(CC) $(CFLAGS)
 RM		:=	rm -rf

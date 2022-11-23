@@ -6,12 +6,36 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/22 16:19:23 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/23 18:28:13 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h> 
 #include <fdf.h>
+
+void	struct_array_creation(t_lstpoint *lst, t_map *map)
+{
+	int			index;
+	t_lstpoint 	*curr;
+	
+	index = 0;
+	curr = lst;
+	while (curr->next)
+		curr = curr->next;
+	map->grid = malloc((curr->x_axis + 1) *(curr->z_axis + 1) * sizeof(t_point));
+	map->collum = curr->z_axis;
+	map->row = curr->x_axis;
+	while(lst->next)
+	{
+		map->grid[index].x_axis = lst->x_axis;
+		map->grid[index].y_axis = lst->y_axis;
+		map->grid[index].z_axis = lst->z_axis;
+		curr = lst;
+		lst = lst->next;
+		free(curr);
+		index++;
+	}
+}
 
 int	map_validity(char *argv[])
 {
@@ -27,15 +51,15 @@ int	map_validity(char *argv[])
 	return (fd);
 }
 
-void	list_creation(char **points, int z_axis, t_point **list)
+void	linked_list_creation(char **points, int z_axis, t_lstpoint **list)
 {
 	int		i;
-	t_point	*point;
+	t_lstpoint	*point;
 
 	i = 0;
 	while (points[i] != '\0' && points[i][0] != '\n')
 	{
-		point = (t_point *)ft_calloc(1, sizeof(t_point));
+		point = (t_lstpoint *)ft_calloc(1, sizeof(t_lstpoint));
 		if (!point)
 			return (perror("point"));
 		ft_point_addback(list, point);
@@ -46,25 +70,26 @@ void	list_creation(char **points, int z_axis, t_point **list)
 	}
 }
 
-t_point	**map_creation(int fd)
+t_lstpoint	**map_creation(int fd, t_map *map)
 {
-	t_point	**list;
-	int		z_axis;
-	char	*line;
-	char	**points;
+	t_lstpoint	**list;
+	int			z_axis;
+	char		*line;
+	char		**points;
 
 	z_axis = 0;
-	list = (t_point **)ft_calloc(1, sizeof(t_point *));
+	list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
 	if (!list)
 		return (perror("list"), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
-		/*make sure to free split*/
+		//make sure to free split 
 		points = ft_split(line, ' ');
-		list_creation(points, z_axis, list);
+		linked_list_creation(points, z_axis, list);
 		line = get_next_line(fd);
 		z_axis++;
 	}
+	struct_array_creation(*list, map);
 	return (list);
 }

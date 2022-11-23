@@ -6,14 +6,14 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:55:24 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/22 16:16:50 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:32:34 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fdf.h>
 
-static t_point	*ft_lstlast(t_point *lst)
+static t_lstpoint	*ft_lstlast(t_lstpoint *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -24,9 +24,9 @@ static t_point	*ft_lstlast(t_point *lst)
 	return (lst);
 }
 
-void	ft_point_addback(t_point **lst, t_point *new)
+void	ft_point_addback(t_lstpoint **lst, t_lstpoint *new)
 {
-	t_point	*node;
+	t_lstpoint	*node;
 
 	node = *lst;
 	if (lst == NULL || new == NULL)
