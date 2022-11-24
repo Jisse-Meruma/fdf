@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/23 18:28:13 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/24 10:16:46 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@
 void	struct_array_creation(t_lstpoint *lst, t_map *map)
 {
 	int			index;
-	t_lstpoint 	*curr;
-	
+	t_lstpoint	*cur;
+
 	index = 0;
-	curr = lst;
-	while (curr->next)
-		curr = curr->next;
-	map->grid = malloc((curr->x_axis + 1) *(curr->z_axis + 1) * sizeof(t_point));
-	map->collum = curr->z_axis;
-	map->row = curr->x_axis;
-	while(lst->next)
+	cur = lst;
+	while (cur->next)
+		cur = cur->next;
+	map->grid = malloc((cur->x_axis + 1) *(cur->z_axis + 1) * sizeof(t_point));
+	map->collum = cur->z_axis;
+	map->row = cur->x_axis;
+	while (lst->next)
 	{
 		map->grid[index].x_axis = lst->x_axis;
 		map->grid[index].y_axis = lst->y_axis;
 		map->grid[index].z_axis = lst->z_axis;
-		curr = lst;
+		cur = lst;
 		lst = lst->next;
-		free(curr);
+		free(cur);
 		index++;
 	}
+	map->total_points = (((lst->x_axis + 1) *(lst->z_axis + 1)) - 1);
 }
 
 int	map_validity(char *argv[])
@@ -53,7 +54,7 @@ int	map_validity(char *argv[])
 
 void	linked_list_creation(char **points, int z_axis, t_lstpoint **list)
 {
-	int		i;
+	int			i;
 	t_lstpoint	*point;
 
 	i = 0;
@@ -70,7 +71,7 @@ void	linked_list_creation(char **points, int z_axis, t_lstpoint **list)
 	}
 }
 
-t_lstpoint	**map_creation(int fd, t_map *map)
+void	map_creation(int fd, t_map *map)
 {
 	t_lstpoint	**list;
 	int			z_axis;
@@ -79,8 +80,8 @@ t_lstpoint	**map_creation(int fd, t_map *map)
 
 	z_axis = 0;
 	list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
-	if (!list)
-		return (perror("list"), NULL);
+	// if (!list)
+	// 	//return (perror("list"), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -91,5 +92,5 @@ t_lstpoint	**map_creation(int fd, t_map *map)
 		z_axis++;
 	}
 	struct_array_creation(*list, map);
-	return (list);
+	free(list);
 }

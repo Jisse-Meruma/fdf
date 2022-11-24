@@ -2,22 +2,23 @@
 NAME		:=	fdf
 
 LIBS		:=	./libft/libft.a
+MLX			:=	./MLX42
 
-HEADER		:=	-I libft -I includes
+HEADER		:=	-I libft -I includes -I $(MLX)/includes
+MLXLIB		:= $(MLX)/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 HEADERS		:=	libft/libft.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CC		:=	gcc
-CFLAGS	:=	-Wall -Wextra -Werror -g -fsanitize=address\
-## -fsanitize=address
-COMPILE	:=	$(CC) $(CFLAGS)
+CFLAGS	:=	-Wall -Wextra \
+##-g -fsanitize=address
 RM		:=	rm -rf
 
 SRC 	:=	main.c \
 			map.c \
-			list_manipulation.c
+			list_manipulation.c \
+			mlxshizzel.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
@@ -38,20 +39,23 @@ Cyan		=	"\033[0;36m"		# Cyan
 White		=	"\033[0;37m"		# White
 
 ### EXEC #######################################################
-all:  $(NAME)
+all: libmlx $(NAME)
+
+libmlx:
+	@$(MAKE) -C $(MLX)
 
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft
-	@$(COMPILE) -o $(NAME) $^ $(LIBS) 
+	@$(CC) $^ $(LIBS) $(MLXLIB) -o $(NAME) 
 	@echo $(Green) Complete ✅ $(Color_Off)
 	@echo -----------------------
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 	@echo $(Purple) Compiling.. 🧱 $< $(Color_Off)
 	@echo -----------------------
-	@$(COMPILE) $(HEADER) -c $< -o $@ 
+	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@ 
 
 $(OBJ_DIR):
 	@mkdir $@
@@ -60,14 +64,16 @@ clean:
 	@echo $(Cyan) Sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft clean
+	@$(MAKE) -C $(MLX) clean
 	@$(RM) $(OBJ) $(BON_OBJ)
 
 fclean:
 	@echo $(Red) Thorough sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft fclean
+	@$(MAKE) -C $(MLX) fclean
 	@$(RM) $(NAME) $(OBJ) $(BON_OBJ)
 
 re: fclean all
 
-.PHONY: clean all fclean re Bonus,
+.PHONY: clean all fclean re libmlx,
