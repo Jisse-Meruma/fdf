@@ -11,14 +11,15 @@ OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra \
-##-g -fsanitize=address
+CFLAGS	:=	-Wall -Wextra
 RM		:=	rm -rf
 
 SRC 	:=	main.c \
 			map.c \
 			list_manipulation.c \
-			mlxshizzel.c
+			mlxshizzel.c \
+			draw_line.c \
+			render_grid.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
@@ -42,7 +43,7 @@ White		=	"\033[0;37m"		# White
 all: libmlx $(NAME)
 
 libmlx:
-	@$(MAKE) -C $(MLX)
+	@$(MAKE) -C $(MLX) DEBUG=1
 
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)

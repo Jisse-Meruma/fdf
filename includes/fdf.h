@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/24 16:37:20 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/30 16:53:04 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define FDF_H
 # include <stdio.h>
 # include <string.h>
-# include <errno.h>
+# include <errno.h> 
 # include <fcntl.h>
 # include "../MLX42/include/MLX42/MLX42.h"
+# include <math.h>
 
 # define WIDTH 1024
 # define HEIGHT 1024
@@ -38,16 +39,26 @@ typedef struct s_link
 
 typedef struct s_map
 {
-	int		row;
-	int		collum;
-	int		total_points;
-	t_point	*grid;
+	int			offset_x;
+	int			offset_z;
+	int			row;
+	int			collum;
+	int			total_points;
+	mlx_image_t *img;
+	mlx_t 		*mlx;
+	t_point		*grid;
 }	t_map;
 
 int			map_validity(char *argv[]);
 void		map_creation(int fd, t_map *map);
 void		ft_point_addback(t_lstpoint **lst, t_lstpoint *new);
 
+void		line_bottem_left(t_map *grid, int index, int xd, int zd);
+void		line_upper_left(t_map grid, int index);
+void		line_bottem_right(t_map *grid, int index, int xd, int zd);
+void		line_upper_right(t_map grid, int index);
+
 int32_t		mlx(t_map *map);
+void		matrix(t_map *grid);
 
 #endif

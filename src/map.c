@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/24 10:16:46 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:23:54 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 		free(cur);
 		index++;
 	}
+	map->grid[index].x_axis = lst->x_axis;
+	map->grid[index].y_axis = lst->y_axis;
+	map->grid[index].z_axis = lst->z_axis;
 	map->total_points = (((lst->x_axis + 1) *(lst->z_axis + 1)) - 1);
 }
 

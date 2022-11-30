@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:25:35 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/24 16:44:07 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/11/30 11:16:28 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ int	main(int argc, char *argv[])
 	map_creation(fd, map);
 	mlx(map);
 }
+	
