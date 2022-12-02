@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/01 11:50:05 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:03:38 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	line_bottem_left(t_map *grid, int index, int xd, int zd)
 	p = a - xd;
 	while (x >= grid->grid[index + grid->row + 1].x_axis)
 	{
-		if (x + 400 >= 0 && x + 400 < WIDTH && z < HEIGHT )
-			mlx_put_pixel(grid->img, x + 400, z, 0xFFFFFFFF);
-		else 
-			break;
+		if (x + 400 >= 0 && x + 400 < WIDTH && z < HEIGHT && z + 200 >= 0)
+			mlx_put_pixel(grid->img, x + 400, z + 200, 0xFFFFFFFF);
 		x--;
 		if (p < 0)
 			p += a;
@@ -78,8 +76,8 @@ void	line_bottem_right(t_map *grid, int index, int xd, int zd)
 	p = a - xd;
 	while (x <= grid->grid[index + 1].x_axis)
 	{
-		if (x + 400 >= 0 && x + 400 < WIDTH && z < HEIGHT )
-			mlx_put_pixel(grid->img, x + 400, z, 0xFFFFFFFF);
+		if (x + 400 >= 0 && x + 400 < WIDTH && z < HEIGHT && z + 200 >= 0)
+			mlx_put_pixel(grid->img, x + 400, z + 200, 0xFFFFFFFF);
 		x++;
 		if (p < 0)
 			p += a;
@@ -88,7 +86,7 @@ void	line_bottem_right(t_map *grid, int index, int xd, int zd)
 			z++;
 			p += b;
 		}
-	}
+	}	
 }
 // void	line_upper_right(t_map grid, int index)
 // {

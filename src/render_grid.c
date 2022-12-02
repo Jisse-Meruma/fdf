@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/01 11:50:56 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:03:15 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	draw_grid(t_map *grid)
 	index = 0;
 	while(index < grid->total_points)
 	{
-		if (index % grid->row != 0)
+		if (index % grid->row + 1 != 0 || index == 0)
 		{
 			xd = grid->grid[index + 1].x_axis - grid->grid[index].x_axis;
 			zd = grid->grid[index + 1].z_axis - grid->grid[index].z_axis;
@@ -61,13 +61,13 @@ void	matrix(t_map *grid)
 	int scale;
 
 	
-	scale = 40;
+	scale = 5;
 	index = 0;
 	while (index <= grid->total_points)
 	{
 		temp = grid->grid[index].x_axis;
 		grid->grid[index].x_axis = (grid->grid[index].x_axis - grid->grid[index].z_axis) * (scale);
-		grid->grid[index].z_axis = (grid->grid[index].z_axis + temp) * (scale / 2);
+		grid->grid[index].z_axis = (grid->grid[index].z_axis + temp - grid->grid[index].y_axis) * (scale / 2);
 		index++;
 	}
 	draw_grid(grid);
