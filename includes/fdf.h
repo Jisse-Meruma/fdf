@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/01 12:01:10 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:02:51 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ typedef struct s_point
 	int				y_axis;
 	int				z_axis;
 }	t_point;
+
+typedef struct s_draw
+{
+	int x_axis;
+	int z_axis;
+	int sign_x;
+	int sign_y;
+	int y_axis;
+	int dx;
+	int dz;
+	int err;
+}	t_draw;
+
 typedef struct s_link
 {
 	int				x_axis;
@@ -39,8 +52,6 @@ typedef struct s_link
 
 typedef struct s_map
 {
-	int			offset_x;
-	int			offset_z;
 	int			row;
 	int			collum;
 	int			total_points;
@@ -53,10 +64,7 @@ int			map_validity(char *argv[]);
 void		map_creation(int fd, t_map *map);
 void		ft_point_addback(t_lstpoint **lst, t_lstpoint *new);
 
-void		line_bottem_left(t_map *grid, int index, int xd, int zd);
-void		line_upper_left(t_map grid, int index);
-void		line_bottem_right(t_map *grid, int index, int xd, int zd);
-void		line_upper_right(t_map grid, int index);
+void		line_draw(t_map *grid, t_point p0, t_point p1);
 
 int32_t		mlx(t_map *map);
 void		matrix(t_map *grid);

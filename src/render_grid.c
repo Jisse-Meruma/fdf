@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/02 17:03:15 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:21:06 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,20 @@
 
 void	draw_grid(t_map *grid)
 {
-	int xd;
-	int zd;
 	int index;
 
 	index = 0;
-	while(index < grid->total_points)
+	while(index < grid->total_points )
 	{
-		if (index % grid->row + 1 != 0 || index == 0)
+		if (index % grid->row + 2 != 0 || index == 0)
 		{
-			xd = grid->grid[index + 1].x_axis - grid->grid[index].x_axis;
-			zd = grid->grid[index + 1].z_axis - grid->grid[index].z_axis;
+			printf("check");
+			line_draw(grid, grid->grid[index], grid->grid[index + 1]);
 		}
-		line_bottem_right(grid, index, xd, zd);
-		if (index + grid->row < grid->total_points)
-		{
 			
-			xd = grid->grid[index].x_axis - grid->grid[index + grid->row + 1].x_axis; 
-			zd = grid->grid[index + grid->row + 1].z_axis - grid->grid[index].z_axis;
-			line_bottem_left(grid, index, xd, zd);
-		}
+		if (index + grid->row <= grid->total_points - 1)
+			line_draw(grid, grid->grid[index], 
+				grid->grid[index + grid->row + 1]);
 		index++;
 	}
 }
@@ -61,7 +55,7 @@ void	matrix(t_map *grid)
 	int scale;
 
 	
-	scale = 5;
+	scale = 30;
 	index = 0;
 	while (index <= grid->total_points)
 	{
