@@ -11,7 +11,7 @@ OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra -g 
+CFLAGS	:=	-Wall -Wextra
 RM		:=	rm -rf
 
 SRC 	:=	main.c \
@@ -43,7 +43,8 @@ White		=	"\033[0;37m"		# White
 all: libmlx $(NAME)
 
 libmlx:
-	@$(MAKE) -C $(MLX) DEBUG=1
+	@$(MAKE) -C $(MLX) \
+	# DEBUG=1
 
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)

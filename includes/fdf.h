@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 12:36:24 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 13:47:35 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 5210
+# define HEIGHT 2880
 # define BPP sizeof(int32_t)
 
 typedef struct s_point
@@ -62,7 +62,7 @@ typedef struct s_map
 
 int			map_validity(char *argv[]);
 void		map_creation(int fd, t_map *map);
-void		ft_point_addback(t_lstpoint **lst, t_lstpoint *new);
+t_lstpoint	*ft_point_addback(t_lstpoint **lst, t_lstpoint *new, t_lstpoint *old_node);
 
 void		line_draw(t_map *grid, t_point p0, t_point p1);
 

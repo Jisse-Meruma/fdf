@@ -6,35 +6,18 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 12:50:03 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:19:15 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// void	render_grid(t_map *grid)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (index <= grid->total_points)
-// 	{
-// 		grid->offset_x = grid->grid[i + 1].x_axis - grid->grid[i].x_axis;
-// 		grid->offset_z = grid->grid[i + 1].z_axis - grid->grid[i].z_axis;
-// 		grid->offset_z -= grid->grid[i + 1].y_axis; - grid->grid[i].y_axis;
-// 		if (grid->offset_x > grid->offset_z)
-// 			line_bottem_right(*grid, i);
-// 		else	
-// 	}
-// }
-
 void	draw_grid(t_map *grid)
 {
-	int index;
+	int	index;
 
 	index = 0;
-	printf("[%d]\n", grid->row);
-	while(index < grid->total_points )
+	while (index < grid->total_points)
 	{
 		if (!(index % grid->row == grid->row - 1))
 		{
@@ -42,7 +25,7 @@ void	draw_grid(t_map *grid)
 		}
 		if (index + grid->row < grid->total_points)
 		{
-			line_draw(grid, grid->grid[index], 
+			line_draw(grid, grid->grid[index],
 				grid->grid[index + grid->row]);
 		}
 		index++;
@@ -51,18 +34,19 @@ void	draw_grid(t_map *grid)
 
 void	matrix(t_map *grid)
 {
-	int temp;
-	int index;
-	int scale;
+	int	temp;
+	int	index;
+	int	scale;
 
-	
-	scale = 5;
+	scale = 10;
 	index = 0;
 	while (index <= grid->total_points)
 	{
 		temp = grid->grid[index].x_axis;
-		grid->grid[index].x_axis = (grid->grid[index].x_axis - grid->grid[index].z_axis) * (scale);
-		grid->grid[index].z_axis = (grid->grid[index].z_axis + temp - grid->grid[index].y_axis) * (scale / 2);
+		grid->grid[index].x_axis = (grid->grid[index].x_axis
+				- grid->grid[index].z_axis) * (scale);
+		grid->grid[index].z_axis = (grid->grid[index].z_axis + temp
+				- grid->grid[index].y_axis) * (scale / 2);
 		index++;
 	}
 	draw_grid(grid);

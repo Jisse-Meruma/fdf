@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 11:17:32 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:18:16 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	map_validity(char *argv[])
 	return (fd);
 }
 
-void	linked_list_creation(char **points, int z_axis, t_lstpoint **list)
+t_lstpoint	*linked_list_creation(char **points, int z_axis,
+	t_lstpoint **list, t_lstpoint *old_point)
 {
 	int			i;
 	t_lstpoint	*point;
@@ -62,36 +63,38 @@ void	linked_list_creation(char **points, int z_axis, t_lstpoint **list)
 	{
 		point = (t_lstpoint *)ft_calloc(1, sizeof(t_lstpoint));
 		if (!point)
-			return (perror("point"));
-		ft_point_addback(list, point);
+			return (perror("point"), NULL);
+		old_point = ft_point_addback(list, point, old_point);
 		point->z_axis = z_axis;
 		point->y_axis = ft_atoi(points[i]);
 		point->x_axis = i;
 		i++;
 	}
+	return (old_point);
 }
 
+/*make sure to free split */
 void	map_creation(int fd, t_map *map)
 {
 	t_lstpoint	**list;
 	int			z_axis;
 	char		*line;
 	char		**points;
+	t_lstpoint	*old_point;
 
 	z_axis = 0;
+	old_point = NULL;
 	list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
-	// if (!list)
-	// 	//return (perror("list"), NULL);
+	if (!list)
+		return (perror("list"));
 	line = get_next_line(fd);
 	while (line)
 	{
-		//make sure to free split 
 		points = ft_split(line, ' ');
-		linked_list_creation(points, z_axis, list);
+		old_point = linked_list_creation(points, z_axis, list, old_point);
 		line = get_next_line(fd);
 		z_axis++;
 	}
-	printf("%d", z_axis);
 	struct_array_creation(*list, map);
 	free(list);
 }
