@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/05 16:02:51 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 12:36:24 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 1920
+# define HEIGHT 1080
 # define BPP sizeof(int32_t)
 
 typedef struct s_point

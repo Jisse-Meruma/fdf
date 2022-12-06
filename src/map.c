@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/30 12:23:54 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 11:17:32 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 	cur = lst;
 	while (cur->next)
 		cur = cur->next;
-	map->grid = malloc((cur->x_axis + 1) *(cur->z_axis + 1) * sizeof(t_point));
-	map->collum = cur->z_axis;
-	map->row = cur->x_axis;
-	while (lst->next)
+	map->collum = cur->z_axis + 1;
+	map->row = cur->x_axis + 1;
+	map->grid = malloc(map->collum * map->row * sizeof(t_point));
+	while (lst)
 	{
 		map->grid[index].x_axis = lst->x_axis;
 		map->grid[index].y_axis = lst->y_axis;
@@ -35,19 +35,16 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 		free(cur);
 		index++;
 	}
-	map->grid[index].x_axis = lst->x_axis;
-	map->grid[index].y_axis = lst->y_axis;
-	map->grid[index].z_axis = lst->z_axis;
-	map->total_points = (((lst->x_axis + 1) *(lst->z_axis + 1)) - 1);
+	map->total_points = (map->collum * map->row);
 }
 
 int	map_validity(char *argv[])
 {
 	int		fd;
-	char	*check;
+	int		check;
 
-	check = ft_strnstr(argv[1], ".fdf", (ft_strlen(argv[1])));
-	if (!check || ft_strlen(check) != 4)
+	check = ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".fdf", 5);
+	if (check)
 		return (-1);
 	fd = open(argv[1], O_RDONLY);
 	if (!fd)
@@ -94,6 +91,7 @@ void	map_creation(int fd, t_map *map)
 		line = get_next_line(fd);
 		z_axis++;
 	}
+	printf("%d", z_axis);
 	struct_array_creation(*list, map);
 	free(list);
 }

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/05 16:13:44 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 12:53:43 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ t_draw	draw_init(t_point p0, t_point p1)
 	draw.sign_y = ft_ternary(p0.z_axis < p1.z_axis, 1, -1);
 	draw.dx = ft_abs(p1.x_axis - p0.x_axis);
 	draw.dz = ft_abs(p1.z_axis - p0.z_axis);
-	draw.x_axis = p0.x_axis;
-	draw.y_axis = p0.z_axis;
 	draw.err = ft_ternary(draw.dx > draw.dz, draw.dx, -draw.dz) / 2;
 	return (draw);
 }
@@ -74,22 +72,21 @@ void line_draw(t_map *grid, t_point p0, t_point p1)
 	draw = draw_init(p0, p1);
 	while (1)
 	{
-		if ((draw.x_axis < WIDTH && draw.x_axis > 0) 
-			&& (draw.y_axis < HEIGHT && draw.sign_y > 0))
-				mlx_put_pixel(grid->img, draw.x_axis, draw.y_axis, 0xFFFFFFFF);
-		if (draw.x_axis == p1.x_axis && draw.y_axis == p1.z_axis)
+		if ((p0.x_axis + 900 < WIDTH && p0.x_axis + 900 > 0) 
+			&& (p0.z_axis + 0 < HEIGHT && p0.z_axis + 0 > 0))
+				mlx_put_pixel(grid->img, p0.x_axis + 900, p0.z_axis + 0, 0xFFFFFFFF);
+		if (p0.x_axis == p1.x_axis && p0.z_axis == p1.z_axis)
 			break ;
-		printf("grid %d\n", draw.err);
 		errtemp = draw.err;
 		if (errtemp > -draw.dx)	
 		{
 			draw.err -= draw.dz;
-			draw.x_axis += draw.sign_x;
+			p0.x_axis += draw.sign_x;
 		}
 		if (errtemp < draw.dz)	
 		{
 			draw.err += draw.dx;
-			draw.y_axis += draw.sign_y;
+			p0.z_axis += draw.sign_y;
 		}
 	}
 }

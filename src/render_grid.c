@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/05 16:21:06 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 12:50:03 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,18 @@ void	draw_grid(t_map *grid)
 	int index;
 
 	index = 0;
+	printf("[%d]\n", grid->row);
 	while(index < grid->total_points )
 	{
-		if (index % grid->row + 2 != 0 || index == 0)
+		if (!(index % grid->row == grid->row - 1))
 		{
-			printf("check");
 			line_draw(grid, grid->grid[index], grid->grid[index + 1]);
 		}
-			
-		if (index + grid->row <= grid->total_points - 1)
+		if (index + grid->row < grid->total_points)
+		{
 			line_draw(grid, grid->grid[index], 
-				grid->grid[index + grid->row + 1]);
+				grid->grid[index + grid->row]);
+		}
 		index++;
 	}
 }
@@ -55,7 +56,7 @@ void	matrix(t_map *grid)
 	int scale;
 
 	
-	scale = 30;
+	scale = 5;
 	index = 0;
 	while (index <= grid->total_points)
 	{
