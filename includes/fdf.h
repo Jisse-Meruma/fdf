@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 13:47:35 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 21:26:39 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_point
 	int				x_axis;
 	int				y_axis;
 	int				z_axis;
+	uint32_t		col;
 }	t_point;
 
 typedef struct s_draw
@@ -47,6 +48,7 @@ typedef struct s_link
 	int				x_axis;
 	int				y_axis;
 	int				z_axis;
+	uint32_t		col;
 	struct s_link	*next;
 }	t_lstpoint;
 

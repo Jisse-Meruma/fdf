@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/22 11:29:34 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:33:07 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_tolower(int c);
+int		ft_toupper(int c);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -31,8 +33,7 @@ int		ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
+int		basetoa(const char *baseset, int base, unsigned long nb);
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
@@ -64,6 +65,9 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
+
+unsigned int	ft_atohex(const char *hex);
+
 
 char	*get_next_line(int fd);
 

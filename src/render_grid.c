@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 15:19:15 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 21:16:34 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	matrix(t_map *grid)
 	int	index;
 	int	scale;
 
-	scale = 10;
+	scale = 3;
 	index = 0;
 	while (index <= grid->total_points)
 	{

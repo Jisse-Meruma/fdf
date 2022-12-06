@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 15:09:19 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 21:26:16 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 		if ((p0.x_axis + 900 < WIDTH && p0.x_axis + 900 > 0)
 			&& (p0.z_axis + 0 < HEIGHT && p0.z_axis + 0 > 0))
 			mlx_put_pixel(grid->img, p0.x_axis + 900,
-				p0.z_axis + 0, 0xFFFFFFFF);
+				p0.z_axis + 0, p0.col);
 		if (p0.x_axis == p1.x_axis && p0.z_axis == p1.z_axis)
 			break ;
 		errtemp = draw.err;

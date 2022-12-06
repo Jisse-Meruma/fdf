@@ -40,6 +40,7 @@ SRC 	:=	ft_atoi.c 		\
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c 	\
 			ft_split.c 		\
+			ft_atoh.c		\
 			\
 			ft_printf/src/basetoa.c			\
 			ft_printf/src/ft_printf.c		\

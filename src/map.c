@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 15:18:16 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/06 21:13:45 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 		map->grid[index].x_axis = lst->x_axis;
 		map->grid[index].y_axis = lst->y_axis;
 		map->grid[index].z_axis = lst->z_axis;
+		map->grid[index].col = lst->col;
 		cur = lst;
 		lst = lst->next;
 		free(cur);
@@ -56,6 +57,7 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 	t_lstpoint **list, t_lstpoint *old_point)
 {
 	int			i;
+	char		*color;
 	t_lstpoint	*point;
 
 	i = 0;
@@ -68,6 +70,11 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 		point->z_axis = z_axis;
 		point->y_axis = ft_atoi(points[i]);
 		point->x_axis = i;
+		color = ft_strchr(points[i], ',');
+		if (color)
+			point->col = ft_atohex(ft_strjoin(color, "FF") + 3);
+		else 
+			point->col = 0xFFFFFFFF;
 		i++;
 	}
 	return (old_point);
@@ -76,10 +83,10 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 /*make sure to free split */
 void	map_creation(int fd, t_map *map)
 {
-	t_lstpoint	**list;
 	int			z_axis;
 	char		*line;
 	char		**points;
+	t_lstpoint	**list;
 	t_lstpoint	*old_point;
 
 	z_axis = 0;
