@@ -14,12 +14,13 @@ SRC_DIR 	:=	./src
 CFLAGS	:=	-Wall -Wextra
 RM		:=	rm -rf
 
-SRC 	:=	main.c \
-			map.c \
-			list_manipulation.c \
-			mlxshizzel.c \
-			draw_line.c \
-			render_grid.c
+SRC 	:=	main.c				\
+			map.c				\
+			list_manipulation.c	\
+			mlxshizzel.c 		\
+			draw_line.c 		\
+			render_grid.c 		\
+			color.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 21:26:39 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:43:46 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void		map_creation(int fd, t_map *map);
 t_lstpoint	*ft_point_addback(t_lstpoint **lst, t_lstpoint *new, t_lstpoint *old_node);
 
 void		line_draw(t_map *grid, t_point p0, t_point p1);
+uint32_t	color_grad(t_point p0, t_point p1, t_draw draw);
 
 int32_t		mlx(t_map *map);
 void		matrix(t_map *grid);
