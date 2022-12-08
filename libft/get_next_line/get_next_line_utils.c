@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 00:15:46 by jisse             #+#    #+#             */
-/*   Updated: 2022/11/22 12:18:17 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:16:53 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ int	line_cat(char *line, char *buffer, int l_index, int read_count)
 
 char	*calloc_creation(int *size_line)
 {
-	int		i;
 	char	*line;
 
-	i = 0;
 	*size_line *= 2;
 	line = malloc((*size_line) * sizeof(char) + 1);
 	if (!line)

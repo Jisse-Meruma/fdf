@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/18 10:51:57 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:14:51 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ char	*ft_itoa(int n)
 {
 	char	*ptr;
 	int		counter;
-	int		i;
 	int		sign;
 
 	sign = 1;
-	i = 0;
 	if (n < 0)
 	{
 		sign = -1;
@@ -49,10 +47,8 @@ char	*ft_itoa(int n)
 
 static int	lenght(int n)
 {
-	int		i;
 	int		counter;
 
-	i = 10;
 	counter = 1;
 	while (n >= 10)
 	{
@@ -64,11 +60,8 @@ static int	lenght(int n)
 
 static void	calc(char *ptr, int n, int sign, int counter)
 {
-	int	i;
-
-	i = 0;
 	if (sign == -1)
-		ptr[i] = '-';
+		ptr[0] = '-';
 	ptr[counter] = '\0';
 	counter--;
 	while (counter >= 0 && ptr[counter] != '-')

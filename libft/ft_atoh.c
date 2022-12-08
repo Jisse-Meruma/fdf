@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoh.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:24:49 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 20:57:38 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:53:31 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned int	ft_atohex(const char *hex)
 	while (hex[i] == ' ' || hex[i] == '\f' || hex[i] == '\n'
 		|| hex[i] == '\r' || hex[i] == '\t' || hex[i] == '\v')
 			i++;
-	while (ft_isalnum(hex[i]) == 1)
+	while (ft_isalnum(hex[i]) == 1 || hex[i] == '\n')
 	{
 		if (hex[i] >= '0' && hex[i] <= '9')
 			numb += hex[i] - '0';

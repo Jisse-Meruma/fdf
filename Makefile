@@ -5,7 +5,7 @@ LIBS		:=	./libft/libft.a
 MLX			:=	./MLX42
 
 HEADER		:=	-I libft -I includes -I $(MLX)/includes
-MLXLIB		:= $(MLX)/libmlx42.a -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+MLXLIB		?= $(MLX)/libmlx42.a -lglfw
 HEADERS		:=	libft/libft.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
@@ -41,6 +41,15 @@ Cyan		=	"\033[0;36m"		# Cyan
 White		=	"\033[0;37m"		# White
 
 ### EXEC #######################################################
+
+ifdef LINUX
+	MLXLIB += -ldl -pthread -lm
+endif
+
+ifndef LINUX 
+	MLXLIB += -framework Cocoa -framework OpenGL -framework IOKit
+endif
+
 all: libmlx $(NAME)
 
 libmlx:

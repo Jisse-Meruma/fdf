@@ -3,44 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/07 16:49:03 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:27:26 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-float	percent(t_point p0, t_draw draw)
+int	gradiant(int point_col0, int point_col1, float percentage)
 {
-	return (( draw.x_axis / p0.x_axis) * 100);
+	return ((int)((1 - percentage) * point_col0 + (percentage * point_col1)));
+}
+
+float	percent(int point_0, int point_1, int current)
+{
+	float	current_diff;
+	float	diff;
+
+	current_diff = current - point_0;
+	diff = point_1 - point_0;
+	return (current_diff / diff);
+}
+
+int rgb_combine(int r, int g, int b)
+{
+	return	(r << 24 | g << 16 | b << 8);
 }
 
 uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
 {
-	int			color_sign;
-	uint32_t	color_diff;
+	int			red;
+	int			green;
+	int			blue;
+	int			color;
+	float		percentage;
 
-	color_sign = 0;
-	if (p0.col == p1.col || p0.x_axis == 0 || p1.x_axis == 0)
-		return (p0.col * 16 * 16 + 255);
-	if (p0.col < p1.col)
-	{
-		color_sign = 1;
-		color_diff = p1.col - p0.col;
-	}
-	else 
-		color_diff = p0.col - p1.col;
-	if (color_sign == 1)
-	{
-		p1.col = p1.col + color_diff * percent(p0, draw);
-		return (p1.col * 16 * 16 + 255);
-	}
+	if (p0.col == p1.col)
+		return (p0.col | 0xFF);
+	if (draw.dx < draw.dz)
+		percentage = percent(p0.z_axis, p1.z_axis, draw.z_axis);
 	else
-	{
-		p0.col = p0.col + color_diff * percent(p1, draw);
-		return(p0.col * 16 * 16 + 255);
-	}
+		percentage = percent(p0.x_axis, p1.x_axis, draw.x_axis);
+	red = gradiant(((p0.col >> 24) & 0xFF),((p1.col >> 24) & 0xFF), percentage);
+	green = gradiant(((p0.col >> 16) & 0xFF),((p1.col >> 16) & 0xFF), percentage);
+	blue = gradiant(((p0.col >> 8) & 0xFF),((p1.col >> 8) & 0xFF), percentage);
+	color = rgb_combine(red, green, blue) | 0xFF;
+	return(color);
 }	

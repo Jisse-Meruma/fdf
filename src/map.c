@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/06 21:13:45 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:54:40 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 	t_lstpoint	*point;
 
 	i = 0;
-	while (points[i] != '\0' && points[i][0] != '\n')
+	while (points[i] && points[i][0] != '\n')
 	{
 		point = (t_lstpoint *)ft_calloc(1, sizeof(t_lstpoint));
 		if (!point)
@@ -72,9 +72,9 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 		point->x_axis = i;
 		color = ft_strchr(points[i], ',');
 		if (color)
-			point->col = ft_atohex(ft_strjoin(color, "FF") + 3);
+			point->col = ft_atohex(ft_strjoin(color, "00") + 3);
 		else 
-			point->col = 0xFFFFFFFF;
+			point->col = 0xFFFFFF00;
 		i++;
 	}
 	return (old_point);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/11/18 11:15:54 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:15:43 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,10 @@ static int	split_creation(char const *s, char c, char **ptr, int w_count)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	int		len_s1;
 	int		w_count;
 	char	**ptr;
 
-	i = 0;
 	len_s1 = ft_strlen(s);
 	w_count = word_count(s, c, len_s1);
 	ptr = (char **)ft_calloc(w_count + 1, sizeof(char *));

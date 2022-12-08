@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/07 15:43:46 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:19:23 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 5210
-# define HEIGHT 2880
+# define WIDTH 1920
+# define HEIGHT 1080
 # define BPP sizeof(int32_t)
 
 typedef struct s_point
