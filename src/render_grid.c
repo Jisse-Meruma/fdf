@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_grid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/08 17:56:50 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/14 11:26:29 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,15 @@ void	draw_grid(t_map *grid)
 
 void	matrix(t_map *grid)
 {
-	int	temp;
 	int	index;
-	int	scale;
 
-	scale = 3;
 	index = 0;
 	while (index <= grid->total_points)
 	{
-		temp = grid->grid[index].x_axis;
-		grid->grid[index].x_axis = (grid->grid[index].x_axis
-				- grid->grid[index].z_axis) * (scale);
-		grid->grid[index].z_axis = (grid->grid[index].z_axis + temp
-				- grid->grid[index].y_axis) * (scale / 2);
+		grid->grid[index].x_grid = ((grid->grid[index].x_map
+				- grid->grid[index].z_map) * (grid->scale)) + grid->cam->x_offset;
+		grid->grid[index].y_grid = ((grid->grid[index].z_map + grid->grid[index].x_map
+				- grid->grid[index].y_map) * (grid->scale / 2)) + grid->cam->y_offset;
 		index++;
 	}
-	draw_grid(grid);
 }

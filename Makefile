@@ -5,7 +5,7 @@ LIBS		:=	./libft/libft.a
 MLX			:=	./MLX42
 
 HEADER		:=	-I libft -I includes -I $(MLX)/includes
-MLXLIB		?= $(MLX)/libmlx42.a -lglfw
+MLXLIB		?= $(MLX)/libmlx42.a
 HEADERS		:=	libft/libft.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
@@ -20,7 +20,8 @@ SRC 	:=	main.c				\
 			mlxshizzel.c 		\
 			draw_line.c 		\
 			render_grid.c 		\
-			color.c
+			color.c				\
+			exit.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))
@@ -47,7 +48,7 @@ ifdef LINUX
 endif
 
 ifndef LINUX 
-	MLXLIB += -framework Cocoa -framework OpenGL -framework IOKit
+	MLXLIB += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
 all: libmlx $(NAME)

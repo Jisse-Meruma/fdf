@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/08 17:27:26 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/12 16:17:17 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
 	if (p0.col == p1.col)
 		return (p0.col | 0xFF);
 	if (draw.dx < draw.dz)
-		percentage = percent(p0.z_axis, p1.z_axis, draw.z_axis);
+		percentage = percent(p0.y_grid, p1.y_grid, draw.y_axis);
 	else
-		percentage = percent(p0.x_axis, p1.x_axis, draw.x_axis);
+		percentage = percent(p0.x_grid, p1.x_grid, draw.x_axis);
 	red = gradiant(((p0.col >> 24) & 0xFF),((p1.col >> 24) & 0xFF), percentage);
 	green = gradiant(((p0.col >> 16) & 0xFF),((p1.col >> 16) & 0xFF), percentage);
 	blue = gradiant(((p0.col >> 8) & 0xFF),((p1.col >> 8) & 0xFF), percentage);

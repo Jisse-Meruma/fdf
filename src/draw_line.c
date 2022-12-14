@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/08 17:57:02 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/12 16:16:23 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ t_draw	draw_init(t_point p0, t_point p1)
 {
 	t_draw	draw;
 
-	draw.sign_x = ft_ternary(p0.x_axis < p1.x_axis, 1, -1);
-	draw.sign_y = ft_ternary(p0.z_axis < p1.z_axis, 1, -1);
-	draw.x_axis = p0.x_axis;
-	draw.z_axis = p0.z_axis;
-	draw.dx = ft_abs(p1.x_axis - p0.x_axis);
-	draw.dz = ft_abs(p1.z_axis - p0.z_axis);
+	draw.sign_x = ft_ternary(p0.x_grid < p1.x_grid, 1, -1);
+	draw.sign_y = ft_ternary(p0.y_grid < p1.y_grid, 1, -1);
+	draw.x_axis = p0.x_grid;
+	draw.y_axis = p0.y_grid;
+	draw.dx = ft_abs(p1.x_grid - p0.x_grid);
+	draw.dz = ft_abs(p1.y_grid - p0.y_grid);
 	draw.err = ft_ternary(draw.dx > draw.dz, draw.dx, -draw.dz) / 2;
 	return (draw);
 }
@@ -54,10 +54,10 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 	while (1)
 	{
 		if ((draw.x_axis + x < WIDTH && draw.x_axis + x > 0)
-			&& (draw.z_axis + y < HEIGHT && draw.z_axis + y > 0))
+			&& (draw.y_axis + y < HEIGHT && draw.y_axis + y > 0))
 			mlx_put_pixel(grid->img, draw.x_axis + x,
-				draw.z_axis + y, color_grad(p0, p1, draw));
-		if (draw.x_axis == p1.x_axis && draw.z_axis == p1.z_axis)
+				draw.y_axis + y, color_grad(p0, p1, draw));
+		if (draw.x_axis == p1.x_grid && draw.y_axis == p1.y_grid)
 			break ;
 		errtemp = draw.err;
 		if (errtemp > -draw.dx)
@@ -68,7 +68,7 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 		if (errtemp < draw.dz)
 		{
 			draw.err += draw.dx;
-			draw.z_axis += draw.sign_y;
+			draw.y_axis += draw.sign_y;
 		}
 	}
 }

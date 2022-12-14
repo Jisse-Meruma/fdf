@@ -3,15 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/08 17:54:40 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/14 12:01:32 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h> 
 #include <fdf.h>
+
+uint32_t	color_create(char **points, int i)
+{
+	char		*str_color;
+	uint32_t	color;
+	
+	str_color = ft_strchr(points[i], ',');
+	if (str_color)
+	{
+		str_color = ft_strjoin(str_color, "00");
+		if (!str_color)
+		{
+			free_split(points);
+			return (0);
+		}	
+		color = ft_atohex(str_color + 3);
+		free(str_color);
+		return (color);
+	}	
+	else 
+		return (0xFFFFFF00);
+}
 
 void	struct_array_creation(t_lstpoint *lst, t_map *map)
 {
@@ -25,11 +47,13 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 	map->collum = cur->z_axis + 1;
 	map->row = cur->x_axis + 1;
 	map->grid = malloc(map->collum * map->row * sizeof(t_point));
+	if (!map->grid)
+		cleanerror(2, map);
 	while (lst)
 	{
-		map->grid[index].x_axis = lst->x_axis;
-		map->grid[index].y_axis = lst->y_axis;
-		map->grid[index].z_axis = lst->z_axis;
+		map->grid[index].x_map = lst->x_axis;
+		map->grid[index].y_map = lst->y_axis;
+		map->grid[index].z_map = lst->z_axis;
 		map->grid[index].col = lst->col;
 		cur = lst;
 		lst = lst->next;
@@ -54,10 +78,9 @@ int	map_validity(char *argv[])
 }
 
 t_lstpoint	*linked_list_creation(char **points, int z_axis,
-	t_lstpoint **list, t_lstpoint *old_point)
+	t_map *map, t_lstpoint *old_point)
 {
 	int			i;
-	char		*color;
 	t_lstpoint	*point;
 
 	i = 0;
@@ -65,43 +88,46 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 	{
 		point = (t_lstpoint *)ft_calloc(1, sizeof(t_lstpoint));
 		if (!point)
-			return (perror("point"), NULL);
-		old_point = ft_point_addback(list, point, old_point);
+		{
+			free_split(points);
+			cleanerror(2, map);
+		}
+		old_point = ft_point_addback(map->list, point, old_point);
 		point->z_axis = z_axis;
 		point->y_axis = ft_atoi(points[i]);
 		point->x_axis = i;
-		color = ft_strchr(points[i], ',');
-		if (color)
-			point->col = ft_atohex(ft_strjoin(color, "00") + 3);
-		else 
-			point->col = 0xFFFFFF00;
+		point->col = color_create(points, i);
+		if (point->col == 0)
+			cleanerror(2, map);
 		i++;
 	}
 	return (old_point);
 }
 
-/*make sure to free split */
 void	map_creation(int fd, t_map *map)
 {
 	int			z_axis;
 	char		*line;
 	char		**points;
-	t_lstpoint	**list;
 	t_lstpoint	*old_point;
 
 	z_axis = 0;
 	old_point = NULL;
-	list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
-	if (!list)
-		return (perror("list"));
+	map->list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
+	if (!map->list)
+		cleanerror(1, map);
 	line = get_next_line(fd);
 	while (line)
 	{
 		points = ft_split(line, ' ');
-		old_point = linked_list_creation(points, z_axis, list, old_point);
+		free(line);
+		if (!points)
+			cleanerror(1, map);
+		old_point = linked_list_creation(points, z_axis, map, old_point);
+		free_split(points);
 		line = get_next_line(fd);
 		z_axis++;
 	}
-	struct_array_creation(*list, map);
-	free(list);
+	struct_array_creation(*map->list, map);
+	free(map->list);
 }
