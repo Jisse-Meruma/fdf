@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 11:37:56 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:50:22 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define BPP sizeof(int32_t)
-# define STD_SCALE 3
+# define STD_SCALE 30
 
 typedef struct s_point
 {
@@ -58,6 +58,7 @@ typedef struct s_camera
 {
 	int		x_offset;
 	int		y_offset;
+	int		height_offset;
 }	t_camera;
 
 typedef struct s_map
@@ -70,7 +71,7 @@ typedef struct s_map
 	mlx_t 		*mlx;
 	t_point		*grid;
 	t_lstpoint	**list;
-	t_camera	*cam;
+	t_camera	cam;
 }	t_map;
 
 int			map_validity(char *argv[]);

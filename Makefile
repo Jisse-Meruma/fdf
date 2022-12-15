@@ -1,17 +1,19 @@
 ### VAR #######################################################
 NAME		:=	fdf
 
+DEBUGGING	?=
+
 LIBS		:=	./libft/libft.a
-MLX			:=	./MLX42
+MLX			?=	./MLX42
 
 HEADER		:=	-I libft -I includes -I $(MLX)/includes
-MLXLIB		?= $(MLX)/libmlx42.a
+MLXLIB		:= $(MLX)/libmlx42.a
 HEADERS		:=	libft/libft.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra
+CFLAGS	:=	-Wall -Wextra -g
 RM		:=	rm -rf
 
 SRC 	:=	main.c				\
@@ -43,6 +45,11 @@ White		=	"\033[0;37m"		# White
 
 ### EXEC #######################################################
 
+ifdef DEBUG
+	MLXLIB += -fsanitize=address
+	DEBUGGING += DEBUG=1
+endif
+
 ifdef LINUX
 	MLXLIB += -ldl -pthread -lm
 endif
@@ -54,8 +61,7 @@ endif
 all: libmlx $(NAME)
 
 libmlx:
-	@$(MAKE) -C $(MLX) \
-	# DEBUG=1
+	@$(MAKE) -C $(MLX) $(DEBUGGING)
 
 $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)

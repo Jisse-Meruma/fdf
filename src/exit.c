@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:29:31 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 11:31:28 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:52:43 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_lstpointclear(t_lstpoint **lst)
 
 void cleanerror(int	error_code, t_map *map)
 {
-	free(map->cam);
 	if (error_code == 1)
 		ft_lstpointclear(map->list);
 	if (error_code > 2)
@@ -56,7 +55,6 @@ void cleanerror(int	error_code, t_map *map)
 
 void	cleanup(t_map *map)
 {
-	free(map->cam);
 	free(map->grid);
 	free(map);
 }

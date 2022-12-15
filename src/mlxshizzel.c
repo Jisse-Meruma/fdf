@@ -6,12 +6,22 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:55:38 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 11:27:27 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/15 17:53:32 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+
+void	reset_grid(t_map *map, t_map *oldmap)
+{
+	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam), &(oldmap->cam), sizeof(t_camera)) != 0)
+	{	
+		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
+		matrix(map);
+		draw_grid(map);
+	}
+}
 
 int	render_background(mlx_t *mlx)
 {
@@ -37,55 +47,34 @@ int	render_background(mlx_t *mlx)
 	return (0);
 }
 
+
+
 void	my_key_hook(void *param)
 {
 	t_map	*map;
+	t_map	oldmap;
 
 	map = param;
+	oldmap = *((t_map*)param);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(map->mlx);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
-		map->cam->y_offset -= 10;
-		matrix(map);
-		draw_grid(map);
-	}
+		map->cam.y_offset -= 20;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
-		map->cam->y_offset += 10;
-		matrix(map);
-		draw_grid(map);
-	}
+		map->cam.y_offset += 20;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
-		map->cam->x_offset -= 10;
-		matrix(map);
-		draw_grid(map);
-	}
+		map->cam.x_offset -= 20;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
-		map->cam->x_offset += 10;
-		matrix(map);
-		draw_grid(map);
-	}
+		map->cam.x_offset += 20;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
 		map->scale++;
-		matrix(map);
-		draw_grid(map);
-	}
 	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_SUBTRACT))
-	{
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
 		map->scale--;
-		matrix(map);
-		draw_grid(map);
-	}
+	if (mlx_is_key_down(map->mlx, MLX_KEY_EQUAL))
+		map->cam.height_offset--;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_MINUS))
+		map->cam.height_offset++;
+	reset_grid(map, &oldmap);
 }
 
 int32_t	mlx(t_map *map)
