@@ -6,7 +6,7 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 15:27:01 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:20:40 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <math.h>
+# include <limits.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080

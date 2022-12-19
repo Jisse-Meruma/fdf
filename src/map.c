@@ -6,7 +6,7 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 15:40:23 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/19 17:19:36 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 		map->grid[index].x_map = lst->x_axis;
 		map->grid[index].y_map = lst->y_axis;
 		map->grid[index].z_map = lst->z_axis;
-		map->grid[index].col = lst->col;
+		map->grid[index].col = lst->col;	
 		cur = lst;
 		lst = lst->next;
 		free(cur);

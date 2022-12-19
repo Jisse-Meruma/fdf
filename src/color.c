@@ -6,7 +6,7 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 15:39:57 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/19 16:08:58 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ float	percent(int point_0, int point_1, int current)
 	return (current_diff / diff);
 }
 
-int	gb_combine(int r, int g, int b)
+int	rgb_combine(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8);
 }
