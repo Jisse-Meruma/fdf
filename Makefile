@@ -51,7 +51,7 @@ ifdef DEBUG
 endif
 
 ifdef LINUX
-	MLXLIB += -ldl -pthread -lm
+	MLXLIB += -lglfw -ldl -pthread -lm
 endif
 
 ifndef LINUX 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:29:31 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/15 17:52:43 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/19 15:26:32 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,10 @@ void	cleanup(t_map *map)
 {
 	free(map->grid);
 	free(map);
+}
+
+void free_split_exit(t_map *map, char **points)
+{
+	free_split(points);
+	cleanerror(2, map);
 }

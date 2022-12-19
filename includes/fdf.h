@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/15 17:50:22 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/19 15:27:01 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_lstpoint	*ft_point_addback(t_lstpoint **lst, t_lstpoint *new, t_lstpoint *old_
 void 		cleanerror(int	error_code, t_map *map);
 void		cleanup(t_map *map);
 void		free_split(char **points);
+void		free_split_exit(t_map *map, char **points);
 
 void		line_draw(t_map *grid, t_point p0, t_point p1);
 void		draw_grid(t_map *grid);
