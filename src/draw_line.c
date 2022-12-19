@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 14:39:48 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/19 15:44:35 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 {
 	int		errtemp;
 	t_draw	draw;
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 900;
 	y = 0;

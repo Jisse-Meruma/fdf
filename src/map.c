@@ -6,7 +6,7 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 15:32:02 by jisse            ###   ########.fr       */
+/*   Updated: 2022/12/19 15:40:23 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint32_t	color_create(char **points, int i)
 {
 	char		*str_color;
 	uint32_t	color;
-	
+
 	str_color = ft_strchr(points[i], ',');
 	if (str_color)
 	{
@@ -31,7 +31,7 @@ uint32_t	color_create(char **points, int i)
 		free(str_color);
 		return (color);
 	}	
-	else 
+	else
 		return (0xFFFFFF00);
 }
 

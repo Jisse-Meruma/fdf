@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxshizzel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:55:38 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/15 17:53:32 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/19 15:43:56 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	reset_grid(t_map *map, t_map *oldmap)
 {
-	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam), &(oldmap->cam), sizeof(t_camera)) != 0)
+	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam),
+			&(oldmap->cam), sizeof(t_camera)) != 0)
 	{	
 		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
 		matrix(map);
@@ -47,15 +48,13 @@ int	render_background(mlx_t *mlx)
 	return (0);
 }
 
-
-
 void	my_key_hook(void *param)
 {
 	t_map	*map;
 	t_map	oldmap;
 
 	map = param;
-	oldmap = *((t_map*)param);
+	oldmap = *((t_map *)param);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(map->mlx);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
