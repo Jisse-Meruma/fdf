@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:55:38 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:08:51 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:50:39 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int32_t	mlx(t_map *map)
 	map->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
 	if (!map->img)
 		cleanerror(3, map);
-	map->scale = STD_SCALE;
+	if (map->total_points < 10000)
+		map->scale = STD_SCALE;
+	else
+		map->scale = 3;
 	if (render_background(map->mlx) != 0)
 		cleanerror(4, map);
 	matrix(map);

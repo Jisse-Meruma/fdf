@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:17:07 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 15:13:43 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 	index = 0;
 	map->collum++;
 	map->row++;
-	map->grid = malloc(map->collum * map->row * sizeof(t_point));
+	map->grid = ft_calloc(map->collum * map->row, sizeof(t_point));
 	if (!map->grid)
 		cleanerror(2, map);
 	while (lst)
