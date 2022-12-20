@@ -23,7 +23,8 @@ SRC 	:=	main.c				\
 			draw_line.c 		\
 			render_grid.c 		\
 			color.c				\
-			exit.c
+			exit.c				\
+			mlx_loops.c
 
 OBJ		:=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 SRC		:=	$(addprefix $(SRC_DIR)/,$(SRC))

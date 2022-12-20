@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/12 16:17:17 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:10:05 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,12 @@ uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
 		percentage = percent(p0.y_grid, p1.y_grid, draw.y_axis);
 	else
 		percentage = percent(p0.x_grid, p1.x_grid, draw.x_axis);
-	red = gradiant(((p0.col >> 24) & 0xFF),((p1.col >> 24) & 0xFF), percentage);
-	green = gradiant(((p0.col >> 16) & 0xFF),((p1.col >> 16) & 0xFF), percentage);
-	blue = gradiant(((p0.col >> 8) & 0xFF),((p1.col >> 8) & 0xFF), percentage);
+	red = gradiant(((p0.col >> 24) & 0xFF),
+			((p1.col >> 24) & 0xFF), percentage);
+	green = gradiant(((p0.col >> 16) & 0xFF),
+			((p1.col >> 16) & 0xFF), percentage);
+	blue = gradiant(((p0.col >> 8) & 0xFF),
+			((p1.col >> 8) & 0xFF), percentage);
 	color = rgb_combine(red, green, blue) | 0xFF;
 	return(color);
 }	

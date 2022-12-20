@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 12:01:32 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:07:57 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,8 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 	t_lstpoint	*cur;
 
 	index = 0;
-	cur = lst;
-	while (cur->next)
-		cur = cur->next;
-	map->collum = cur->z_axis + 1;
-	map->row = cur->x_axis + 1;
+	map->collum++;
+	map->row++;
 	map->grid = malloc(map->collum * map->row * sizeof(t_point));
 	if (!map->grid)
 		cleanerror(2, map);
@@ -88,15 +85,16 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 	{
 		point = (t_lstpoint *)ft_calloc(1, sizeof(t_lstpoint));
 		if (!point)
-		{
-			free_split(points);
-			cleanerror(2, map);
-		}
+			free_split_exit(map, points);
 		old_point = ft_point_addback(map->list, point, old_point);
 		point->z_axis = z_axis;
 		point->y_axis = ft_atoi(points[i]);
 		point->x_axis = i;
 		point->col = color_create(points, i);
+		if (map->row < i)
+			map->row = i;
+		if (map->collum < z_axis)
+			map->collum = z_axis;
 		if (point->col == 0)
 			cleanerror(2, map);
 		i++;

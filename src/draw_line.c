@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 14:39:48 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:10:31 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ t_draw	draw_init(t_point p0, t_point p1)
 	return (draw);
 }
 
-int	draw_break(t_draw draw, t_point p0, t_point p1)
+int	draw_break(t_draw draw, t_point p1)
 {
 	if ((draw.x_axis == p1.x_grid && draw.y_axis == p1.y_grid)
-		|| (p0.x_grid > WIDTH && p1.x_grid > WIDTH)
-		|| (p0.y_grid > HEIGHT && p1.y_grid > HEIGHT)
-		|| (p0.x_grid < 0 - 900 && p1.x_grid < 0 - 900)
-		|| (p0.y_grid < 0 && p1.y_grid < 0))
+		|| (draw.x_axis > WIDTH && p1.x_grid > WIDTH)
+		|| (draw.y_axis > HEIGHT && p1.y_grid > HEIGHT)
+		|| (draw.x_axis  < 0 - 900 && p1.x_grid < 0 - 900)
+		|| (draw.y_axis < 0 && p1.y_grid < 0))
 		return (1);
 	return (0);
 }
@@ -68,7 +68,7 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 			&& (draw.y_axis + y < HEIGHT && draw.y_axis + y > 0))
 			mlx_put_pixel(grid->img, draw.x_axis + x,
 				draw.y_axis + y, color_grad(p0, p1, draw));
-		if (draw_break(draw, p0, p1) == 1)
+		if (draw_break(draw, p1) == 1)
 			break ;
 		errtemp = draw.err;
 		if (errtemp > -draw.dx)
