@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:29:31 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:06:27 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:16:39 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	free_split(char **points)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (points[i])
@@ -41,7 +41,7 @@ void	ft_lstpointclear(t_lstpoint **lst)
 	*lst = NULL;
 }
 
-void cleanerror(int	error_code, t_map *map)
+void	cleanerror(int error_code, t_map *map)
 {
 	if (error_code == 1)
 		ft_lstpointclear(map->list);

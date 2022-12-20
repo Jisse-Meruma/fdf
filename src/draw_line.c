@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:10:31 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:15:53 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	draw_break(t_draw draw, t_point p1)
 	if ((draw.x_axis == p1.x_grid && draw.y_axis == p1.y_grid)
 		|| (draw.x_axis > WIDTH && p1.x_grid > WIDTH)
 		|| (draw.y_axis > HEIGHT && p1.y_grid > HEIGHT)
-		|| (draw.x_axis  < 0 - 900 && p1.x_grid < 0 - 900)
+		|| (draw.x_axis < 0 - 900 && p1.x_grid < 0 - 900)
 		|| (draw.y_axis < 0 && p1.y_grid < 0))
 		return (1);
 	return (0);
@@ -56,8 +56,8 @@ void	line_draw(t_map *grid, t_point p0, t_point p1)
 {
 	int		errtemp;
 	t_draw	draw;
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 900;
 	y = 0;

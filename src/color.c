@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:10:05 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:15:23 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ float	percent(int point_0, int point_1, int current)
 	return (current_diff / diff);
 }
 
-int rgb_combine(int r, int g, int b)
+int	rgb_combine(int r, int g, int b)
 {
-	return	(r << 24 | g << 16 | b << 8);
+	return (r << 24 | g << 16 | b << 8);
 }
 
 uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
@@ -54,5 +54,5 @@ uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
 	blue = gradiant(((p0.col >> 8) & 0xFF),
 			((p1.col >> 8) & 0xFF), percentage);
 	color = rgb_combine(red, green, blue) | 0xFF;
-	return(color);
+	return (color);
 }	

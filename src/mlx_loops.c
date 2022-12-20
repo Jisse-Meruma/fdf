@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 12:51:04 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 14:17:41 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	reset_grid(t_map *map, t_map *oldmap)
 {
-	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam), &(oldmap->cam), sizeof(t_camera)) != 0)
+	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam),
+			&(oldmap->cam), sizeof(t_camera)) != 0)
 	{	
 		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
 		matrix(map);
@@ -53,11 +54,10 @@ void	map_key_hook(void *param)
 	t_map	oldmap;
 
 	map = param;
-	oldmap = *((t_map*)param);
+	oldmap = *((t_map *)param);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(map->mlx);
 	camera_loop(map);
 	grid_loop(map);
 	reset_grid(map, &oldmap);
 }
-
