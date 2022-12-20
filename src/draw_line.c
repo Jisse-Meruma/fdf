@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:17:43 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 15:31:14 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/20 19:02:05 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	draw_break(t_draw draw, t_point p1)
 	if ((draw.x_axis == p1.x_grid && draw.y_axis == p1.y_grid)
 		|| (draw.x_axis > WIDTH && p1.x_grid > WIDTH)
 		|| (draw.y_axis > HEIGHT && p1.y_grid > HEIGHT)
-		|| (draw.x_axis < 0 && p1.x_grid < 0 )
+		|| (draw.x_axis < 0 && p1.x_grid < 0)
 		|| (draw.y_axis < 0 && p1.y_grid < 0))
 		return (1);
 	return (0);
