@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 15:28:40 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/21 10:52:53 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_camera
 	int		x_offset;
 	int		y_offset;
 	int		height_offset;
+	int		projection;
 }	t_camera;
 
 typedef struct s_map

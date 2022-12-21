@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:17:41 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/21 11:06:54 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ void	camera_loop(t_map *map)
 		map->cam.x_offset -= 20;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
 		map->cam.x_offset += 20;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_1))
+		map->cam.projection = 0;
+	if (mlx_is_key_down(map->mlx, MLX_KEY_2))
+		map->cam.projection = 1;
 }
 
 void	grid_loop(t_map	*map)
