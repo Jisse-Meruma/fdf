@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 15:13:43 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/21 13:46:46 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 
 uint32_t	color_create(char **points, int i)
 {
+	int			red;
+	int			green;
+	int			blue;
 	char		*str_color;
 	uint32_t	color;
 
 	str_color = ft_strchr(points[i], ',');
 	if (str_color)
 	{
-		str_color = ft_strjoin(str_color, "00");
-		if (!str_color)
-		{
-			free_split(points);
-			return (0);
-		}	
 		color = ft_atohex(str_color + 3);
-		free(str_color);
+		red = ((color >> 16) & 0xFF);
+		green = ((color >> 8) & 0xFF);
+		blue = (color & 0xFF);
+		color = rgb_combine(red, green, blue) | 0xFF;
 		return (color);
 	}	
 	else
-		return (0xFFFFFF00);
+		return (0xFFFFFFFF);
 }
 
 void	struct_array_creation(t_lstpoint *lst, t_map *map)

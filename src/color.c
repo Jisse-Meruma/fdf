@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:11:14 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/20 14:15:23 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/21 13:37:06 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ uint32_t	color_grad(t_point p0, t_point p1, t_draw draw)
 	int			red;
 	int			green;
 	int			blue;
-	int			color;
+	uint32_t	color;
 	float		percentage;
 
 	if (p0.col == p1.col)
-		return (p0.col | 0xFF);
+		return (p0.col);
 	if (draw.dx < draw.dz)
 		percentage = percent(p0.y_grid, p1.y_grid, draw.y_axis);
 	else

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/21 10:52:53 by jmeruma          ###   ########.fr       */
+/*   Updated: 2022/12/21 13:35:13 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,5 @@ int32_t		mlx(t_map *map);
 void		map_key_hook(void *param);
 void		matrix(t_map *grid);
 
+int		rgb_combine(int r, int g, int b);
 #endif
