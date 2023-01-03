@@ -6,7 +6,7 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 17:19:53 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/03 21:11:27 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,42 @@ void	draw_grid(t_map *grid)
 	}
 }
 
+void	isometric(t_map *grid, int index)
+{
+	grid->grid[index].x_grid = (grid->cam.r_x
+			- grid->cam.r_z);
+	grid->grid[index].y_grid = (grid->cam.r_x
+			+ grid->cam.r_z
+			- grid->cam.r_y) / 2;
+	if (grid->grid[index].y_map != 0)
+		grid->grid[index].y_grid += grid->cam.height_offset
+			* grid->grid[index].y_map;
+}
+
+void	parallel(t_map *grid, int index)
+{
+	grid->grid[index].x_grid = grid->grid[index].x_map * grid->scale;
+	grid->grid[index].y_grid = grid->grid[index].z_map * grid->scale;
+}
+
 void	matrix(t_map *grid)
 {
 	int	index;
+	int temp;
 
 	index = 0;
 	while (index <= grid->total_points)
 	{
-		grid->grid[index].x_grid = (grid->grid[index].x_map
-				- grid->grid[index].z_map) * (grid->scale);
-		grid->grid[index].y_grid = (grid->grid[index].z_map
-				+ grid->grid[index].x_map
-				- grid->grid[index].y_map) * (grid->scale / 2);
+		rotation(grid, index);
+		if (grid->cam.projection == 0)
+			isometric(grid, index);
+		if (grid->cam.projection == 1)
+			parallel(grid, index);
+			grid->grid[index].x_grid += WIDTH / 2;
+		if (grid->total_points < 10000)
+			grid->grid[index].y_grid += HEIGHT / 2;
 		grid->grid[index].x_grid += grid->cam.x_offset;
 		grid->grid[index].y_grid += grid->cam.y_offset;
-		if (grid->grid[index].y_map != 0)
-			grid->grid[index].y_grid += grid->cam.height_offset
-				* grid->grid[index].y_map;
-		index++;
+ 		index++;
 	}
 }

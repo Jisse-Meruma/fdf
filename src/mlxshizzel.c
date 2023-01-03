@@ -6,23 +6,12 @@
 /*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:55:38 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/19 15:43:56 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/03 21:07:51 by jisse            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-
-void	reset_grid(t_map *map, t_map *oldmap)
-{
-	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam),
-			&(oldmap->cam), sizeof(t_camera)) != 0)
-	{	
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
-		matrix(map);
-		draw_grid(map);
-	}
-}
 
 int	render_background(mlx_t *mlx)
 {
@@ -48,34 +37,6 @@ int	render_background(mlx_t *mlx)
 	return (0);
 }
 
-void	my_key_hook(void *param)
-{
-	t_map	*map;
-	t_map	oldmap;
-
-	map = param;
-	oldmap = *((t_map *)param);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(map->mlx);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
-		map->cam.y_offset -= 20;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_DOWN))
-		map->cam.y_offset += 20;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
-		map->cam.x_offset -= 20;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
-		map->cam.x_offset += 20;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_ADD))
-		map->scale++;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_KP_SUBTRACT))
-		map->scale--;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_EQUAL))
-		map->cam.height_offset--;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_MINUS))
-		map->cam.height_offset++;
-	reset_grid(map, &oldmap);
-}
-
 int32_t	mlx(t_map *map)
 {
 	map->mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
@@ -84,14 +45,17 @@ int32_t	mlx(t_map *map)
 	map->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
 	if (!map->img)
 		cleanerror(3, map);
-	map->scale = STD_SCALE;
+	if (map->total_points < 10000)
+		map->scale = STD_SCALE;
+	else
+		map->scale = 3;
 	if (render_background(map->mlx) != 0)
 		cleanerror(4, map);
 	matrix(map);
 	draw_grid(map);
 	if (mlx_image_to_window(map->mlx, map->img, 0, 0) == -1)
 		cleanerror(4, map);
-	mlx_loop_hook(map->mlx, &my_key_hook, map);
+	mlx_loop_hook(map->mlx, &map_key_hook, map);
 	mlx_loop(map->mlx);
 	mlx_terminate(map->mlx);
 	return (0);
