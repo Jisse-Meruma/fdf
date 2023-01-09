@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 14:15:21 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/09 17:44:26 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,26 @@ void	draw_grid(t_map *grid)
 				grid->grid[index + grid->row]);
 		}
 		index++;
+	}
+}
+
+void	draw_reverse_grid(t_map *grid)
+{
+	int	index;
+
+	index = grid->total_points - 1;
+	while (0 <= index)
+	{
+		if (!(index % grid->row == 0))
+		{
+			line_draw(grid, grid->grid[index], grid->grid[index - 1]);
+		}
+		if (index >= grid->row)
+		{
+			line_draw(grid, grid->grid[index],
+				grid->grid[index - grid->row]);
+		}
+		index--;
 	}
 }
 

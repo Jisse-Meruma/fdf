@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 12:26:30 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/09 15:23:44 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void		free_split_exit(t_map *map, char **points);
 
 void		line_draw(t_map *grid, t_point p0, t_point p1);
 void		draw_grid(t_map *grid);
+void		draw_reverse_grid(t_map *grid);
 void		rotation(t_point *point, t_map *map);
 uint32_t	color_grad(t_point p0, t_point p1, t_draw draw);
 
