@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/03 21:03:11 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/09 12:26:30 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		free_split_exit(t_map *map, char **points);
 
 void		line_draw(t_map *grid, t_point p0, t_point p1);
 void		draw_grid(t_map *grid);
-void		rotation(t_map *map, int index);
+void		rotation(t_point *point, t_map *map);
 uint32_t	color_grad(t_point p0, t_point p1, t_draw draw);
 
 int32_t		mlx(t_map *map);

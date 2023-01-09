@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/23 13:37:50 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/09 14:31:45 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,9 @@ void	grid_loop(t_map	*map)
 	if (mlx_is_key_down(map->mlx, MLX_KEY_MINUS))
 		map->cam.height_offset++;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_Q))
-		map->cam.rotate_x += 0.1;
+		map->cam.rotate_y += 0.05;
 	if (mlx_is_key_down(map->mlx, MLX_KEY_E))
-		map->cam.rotate_x -= 0.1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_A))
-		map->cam.rotate_y += 0.1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
-		map->cam.rotate_y -= 0.1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_Z))
-		map->cam.rotate_z += 0.1;
-	if (mlx_is_key_down(map->mlx, MLX_KEY_C))
-		map->cam.rotate_z -= 0.1;
+		map->cam.rotate_y -= 0.05;
 }
 
 void	map_key_hook(void *param)

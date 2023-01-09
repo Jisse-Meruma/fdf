@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_grid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/03 21:11:27 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/09 14:15:21 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	isometric(t_map *grid, int index)
 
 void	parallel(t_map *grid, int index)
 {
-	grid->grid[index].x_grid = grid->grid[index].x_map * grid->scale;
-	grid->grid[index].y_grid = grid->grid[index].z_map * grid->scale;
+	grid->grid[index].x_grid = grid->cam.r_x;
+	grid->grid[index].y_grid = grid->cam.r_z;
 }
 
 void	matrix(t_map *grid)
@@ -56,9 +56,9 @@ void	matrix(t_map *grid)
 	int temp;
 
 	index = 0;
-	while (index <= grid->total_points)
+	while (index < grid->total_points)
 	{
-		rotation(grid, index);
+		rotation(&grid->grid[index], grid);
 		if (grid->cam.projection == 0)
 			isometric(grid, index);
 		if (grid->cam.projection == 1)

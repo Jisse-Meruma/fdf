@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 12:17:15 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/23 16:38:00 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/09 14:53:34 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,15 @@ void	rotation_y(double rotate_y, t_point *point, t_camera *cam)
 	cam->r_x = point->x_map * cos(rotate_y) + point->z_map * sin(rotate_y);
 	cam->r_z = point->x_map * -sin(rotate_y) + point->z_map * cos(rotate_y);
 }
-void	rotation_z(double rotate_z, t_point *point, t_camera *cam)
+
+void	rotation(t_point *point, t_map *map)
 {
-	cam->r_x = point->x_map * cos(rotate_z) - point->y_map * sin(rotate_z);
-	cam->r_y = point->x_map * sin(rotate_z) + point->y_map * cos(rotate_z);	
+	t_point	scale_point;
+                 
+	scale_point = *point;
+	scale_point.x_map = (scale_point.x_map - (map->collum / 2)) * map->scale;
+	scale_point.y_map = (scale_point.y_map - (map->collum / 2)) * map->scale;
+	scale_point.z_map = (scale_point.z_map - (map->collum / 2)) * map->scale;
+	rotation_x(map->cam.rotate_x, &scale_point, &map->cam);
+	rotation_y(map->cam.rotate_y, &scale_point, &map->cam);
 }
-
-void	rotation(t_map *map, int index)
-{
-	t_map	scale_map;
-
-	scale_map = *map;
-	scale_map.grid[index].x_map *= map->scale;
-	scale_map.grid[index].y_map *= map->scale;
-	scale_map.grid[index].z_map *= map->scale;
-	rotation_x(map->cam.rotate_x, &scale_map.grid[index], &map->cam);
-	rotation_y(map->cam.rotate_y, &scale_map.grid[index], &map->cam);
-	rotation_z(map->cam.rotate_z, &scale_map.grid[index], &map->cam);
-}	
