@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/03 21:05:39 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/10 11:15:54 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	struct_array_creation(t_lstpoint *lst, t_map *map)
 		map->grid[index].x_map = lst->x_axis;
 		map->grid[index].y_map = lst->y_axis;
 		map->grid[index].z_map = lst->z_axis;
-		map->grid[index].col = lst->col;	
+		map->grid[index].col = lst->col;
 		cur = lst;
 		lst = lst->next;
 		free(cur);
@@ -97,10 +97,6 @@ t_lstpoint	*linked_list_creation(char **points, int z_axis,
 			map->collum = z_axis;
 		if (point->col == 0)
 			cleanerror(2, map);
-		if (map->collum < z_axis)
-			map->collum = z_axis;
-		if (map->row < i)
-			map->row = i;
 		i++;
 	}
 	return (old_point);

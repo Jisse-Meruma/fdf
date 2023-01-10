@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:24:49 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/21 13:45:59 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 11:16:52 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 unsigned int	ft_atohex(const char *hex)
 {
-	int 			i;
+	int				i;
 	unsigned int	numb;
 
 	i = 0;

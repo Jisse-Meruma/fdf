@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 17:56:34 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 11:14:19 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	reset_grid(t_map *map, t_map *oldmap)
 			else
 				draw_reverse_grid(map);
 		}
-		else 
+		else
 			draw_reverse_grid(map);
 	}
 }

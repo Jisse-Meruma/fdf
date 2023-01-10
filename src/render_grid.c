@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 17:44:26 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 11:14:43 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	parallel(t_map *grid, int index)
 void	matrix(t_map *grid)
 {
 	int	index;
-	int temp;
 
 	index = 0;
 	while (index < grid->total_points)
@@ -88,6 +87,6 @@ void	matrix(t_map *grid)
 			grid->grid[index].y_grid += HEIGHT / 2;
 		grid->grid[index].x_grid += grid->cam.x_offset;
 		grid->grid[index].y_grid += grid->cam.y_offset;
- 		index++;
+		index++;
 	}
 }
