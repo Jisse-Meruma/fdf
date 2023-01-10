@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 11:14:19 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:47:16 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	reset_grid(t_map *map, t_map *oldmap)
 	{	
 		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
 		matrix(map);
-		if ((cos(map->cam.rotate_y) > -0.69 && cos(map->cam.rotate_y) <= 1))
+		if ((cos(map->cam.rotate_y) > -0.71 && cos(map->cam.rotate_y) <= 1))
 		{
 			if ((sin(map->cam.rotate_y) > -0.71 && sin(map->cam.rotate_y) <= 1))
 				draw_grid(map);

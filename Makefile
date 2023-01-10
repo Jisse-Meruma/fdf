@@ -13,7 +13,7 @@ OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra -g
+CFLAGS	:=	-Wall -Wextra -Werror
 RM		:=	rm -rf
 
 SRC 	:=	main.c				\
