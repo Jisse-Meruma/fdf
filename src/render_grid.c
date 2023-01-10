@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:58:06 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 11:14:43 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:22:57 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ void	draw_grid(t_map *grid)
 	{
 		if (!(index % grid->row == grid->row - 1))
 		{
-			line_draw(grid, grid->grid[index], grid->grid[index + 1]);
+			if (out_of_bounds(grid->grid[index], grid->grid[index + 1]) != 1)
+				line_draw(grid, grid->grid[index], grid->grid[index + 1]);
+			else
+				line_draw(grid, grid->grid[index + 1], grid->grid[index]);
 		}
 		if (index + grid->row < grid->total_points)
 		{
-			line_draw(grid, grid->grid[index],
-				grid->grid[index + grid->row]);
+			if (out_of_bounds(grid->grid[index],
+					grid->grid[index + grid->row]) != 1)
+				line_draw(grid, grid->grid[index],
+					grid->grid[index + grid->row]);
+			else
+				line_draw(grid, grid->grid[index + grid->row],
+					grid->grid[index]);
 		}
 		index++;
 	}
@@ -41,12 +49,20 @@ void	draw_reverse_grid(t_map *grid)
 	{
 		if (!(index % grid->row == 0))
 		{
-			line_draw(grid, grid->grid[index], grid->grid[index - 1]);
+			if (out_of_bounds(grid->grid[index], grid->grid[index - 1]) != 1)
+				line_draw(grid, grid->grid[index], grid->grid[index - 1]);
+			else
+				line_draw(grid, grid->grid[index - 1], grid->grid[index]);
 		}
 		if (index >= grid->row)
 		{
-			line_draw(grid, grid->grid[index],
-				grid->grid[index - grid->row]);
+			if (out_of_bounds(grid->grid[index],
+					grid->grid[index - grid->row]) != 1)
+				line_draw(grid, grid->grid[index],
+					grid->grid[index - grid->row]);
+			else
+				line_draw(grid, grid->grid[index - grid->row],
+					grid->grid[index]);
 		}
 		index--;
 	}

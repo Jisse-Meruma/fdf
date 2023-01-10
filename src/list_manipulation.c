@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 11:55:24 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/14 10:51:49 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 12:02:59 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,13 @@ t_lstpoint	*ft_point_addback(t_lstpoint **lst,
 	if (old_node != NULL)
 		old_node->next = new;
 	return (new);
+}
+
+int	out_of_bounds(t_point p0, t_point p1)
+{
+	if ((p0.y_grid > HEIGHT && p1.y_grid < HEIGHT)
+		|| (p0.y_grid < 0 && p1.y_grid > 0))
+		return (1);
+	else
+		return (0);
 }

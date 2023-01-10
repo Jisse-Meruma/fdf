@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:11:08 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 15:23:44 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 11:40:08 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int32_t		mlx(t_map *map);
 void		map_key_hook(void *param);
 void		matrix(t_map *grid);
 
-int		rgb_combine(int r, int g, int b);
+int			rgb_combine(int r, int g, int b);
+int			out_of_bounds(t_point p0, t_point p1);
 #endif
