@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:25:35 by jmeruma           #+#    #+#             */
-/*   Updated: 2022/12/15 17:52:32 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:03:43 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 		return (perror("map invalid"), 1);
 	map = ft_calloc(1, sizeof(t_map));
 	if (!map)
-		return (-1);
+		return (EXIT_FAILURE);
 	map_creation(fd, map);
 	mlx(map);
 	cleanup(map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jisse <jisse@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 10:29:31 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/03 21:08:09 by jisse            ###   ########.fr       */
+/*   Updated: 2023/01/10 14:49:33 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	cleanerror(int error_code, t_map *map)
 {
 	if (error_code == 1)
 		ft_lstpointclear(map->list);
+	if (error_code == 2)
+		free(map->list);
 	if (error_code > 2)
 		free(map->grid);
 	if (error_code > 3)

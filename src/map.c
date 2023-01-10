@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:35:16 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 11:15:54 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:53:32 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	map_creation(int fd, t_map *map)
 	old_point = NULL;
 	map->list = (t_lstpoint **)ft_calloc(1, sizeof(t_lstpoint *));
 	if (!map->list)
-		cleanerror(1, map);
+		cleanerror(0, map);
 	line = get_next_line(fd);
 	while (line)
 	{

@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 12:55:38 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/09 15:32:00 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 14:57:22 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	render_background(mlx_t *mlx)
 	return (0);
 }
 
-int32_t	mlx(t_map *map)
+void	mlx(t_map *map)
 {
 	map->mlx = mlx_init(WIDTH, HEIGHT, "fdf", true);
 	if (!map->mlx)
@@ -58,5 +58,4 @@ int32_t	mlx(t_map *map)
 	mlx_loop_hook(map->mlx, &map_key_hook, map);
 	mlx_loop(map->mlx);
 	mlx_terminate(map->mlx);
-	return (0);
 }

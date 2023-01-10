@@ -6,7 +6,7 @@
 /*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:32:36 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 12:47:16 by jmeruma          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:02:14 by jmeruma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	reset_grid(t_map *map, t_map *oldmap)
 	if (map->scale != oldmap->scale || ft_memcmp(&(map->cam),
 			&(oldmap->cam), sizeof(t_camera)) != 0)
 	{	
-		ft_bzero(map->img->pixels, WIDTH * HEIGHT * BPP);
+		ft_bzero(map->img->pixels, WIDTH * HEIGHT * sizeof(uint32_t));
 		matrix(map);
 		if ((cos(map->cam.rotate_y) > -0.71 && cos(map->cam.rotate_y) <= 1))
 		{
