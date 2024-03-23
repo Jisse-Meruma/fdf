@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jmeruma <jmeruma@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 15:05:51 by jmeruma           #+#    #+#             */
-/*   Updated: 2023/01/10 11:22:21 by jmeruma          ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   libft.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jmeruma <jmeruma@student.42.fr>              +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/10/03 15:05:51 by jmeruma       #+#    #+#                 */
+/*   Updated: 2024/03/23 20:35:59 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
