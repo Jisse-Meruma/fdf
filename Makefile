@@ -7,13 +7,13 @@ LIBS		:=	./libft/libft.a
 MLX			?=	./MLX42
 
 HEADER		:=	-I libft -I includes -I $(MLX)/includes
-MLXLIB		:= $(MLX)/libmlx42.a
+MLXLIB		:=	$(MLX)/libmlx42.a
 HEADERS		:=	libft/libft.h
 OBJ_DIR		:=	./obj
 SRC_DIR 	:=	./src
 
 ### UTILS #####################################################
-CFLAGS	:=	-Wall -Wextra -Werror
+CFLAGS	:=	-Wall -Wextra
 RM		:=	rm -rf
 
 SRC 	:=	main.c				\
@@ -56,8 +56,8 @@ ifdef LINUX
 	MLXLIB += -lglfw -ldl -pthread -lm
 endif
 
-ifndef LINUX 
-	MLXLIB += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+ifndef LINUX
+	MLXLIB += $(MLXLIB) -Iinclude -ldl -lglfw -pthread -lm
 endif
 
 all: libmlx $(NAME)
@@ -69,14 +69,14 @@ $(NAME): $(OBJ)
 	@echo $(Yellow) Building.. 🏠$(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft
-	@$(CC) $^ $(LIBS) $(MLXLIB) -o $(NAME) 
+	@$(CC) $^ $(LIBS) $(MLXLIB) -o $(NAME)
 	@echo $(Green) Complete ✅ $(Color_Off)
 	@echo -----------------------
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 	@echo $(Purple) Compiling.. 🧱 $< $(Color_Off)
 	@echo -----------------------
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@ 
+	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir $@
@@ -92,7 +92,7 @@ fclean:
 	@echo $(Red) Thorough sweeping.. 💥 $(Color_Off)
 	@echo -----------------------
 	@$(MAKE) -C libft fclean
-	@$(MAKE) -C $(MLX) fclean
+	@$(MAKE) -C $(MLX) clean
 	@$(RM) $(NAME) $(OBJ) $(BON_OBJ)
 
 re: fclean all
